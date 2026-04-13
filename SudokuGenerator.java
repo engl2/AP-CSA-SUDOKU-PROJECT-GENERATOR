@@ -2,22 +2,20 @@ public class SudokuGenerator {
 
     private int[][] board = new int[9][9]; // 9x9 Sudoku board
 
-    // Generate the board using a base pattern
+    // this generates the board using a base pattern
     public void generateBoard() {
-        // Fill the board with a simple pattern
+        // this fills the board with a simple pattern
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 board[row][col] = (row * 3 + row / 3 + col) % 9 + 1;
             }
         }
-
         // for swapping rows in each 3-row block
         for (int block = 0; block < 3; block++) {
             int startRow = block * 3;
             swapRows(startRow, startRow + 1); // Swap first and second row in block
             swapRows(startRow, startRow + 2); // Swap first and third row in block
         }
-
         // for swapping columns in each 3-column block
         for (int block = 0; block < 3; block++) {
             int startCol = block * 3;
@@ -25,14 +23,12 @@ public class SudokuGenerator {
             swapColumns(startCol, startCol + 2); // Swap first and third column in block
         }
     }
-
     // this allows to swap two rows
     private void swapRows(int row1, int row2) {
         int[] temp = board[row1];
         board[row1] = board[row2];
         board[row2] = temp;
     }
-
     // this swaps the two columns
     private void swapColumns(int col1, int col2) {
         for (int row = 0; row < 9; row++) {
@@ -41,7 +37,6 @@ public class SudokuGenerator {
             board[row][col2] = temp;
         }
     }
-
     // this prints the board neatly
     public void printBoard() {
         for (int row = 0; row < 9; row++) {
